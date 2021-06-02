@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HeroesComponent } from './components/heroes/heroes.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,11 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'heroes',
+    component: HeroesComponent,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

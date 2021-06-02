@@ -1,0 +1,53 @@
+
+
+
+<ion-content>
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="home" (click)="location.back()"></ion-back-button>
+            </ion-buttons>
+            <ion-title>Heroes</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-item color="primary">
+        <ion-label position="stacked">Power up factor</ion-label>
+        <ion-input type="number" inputmode="numeric" [(ngModel)]="factor"></ion-input>
+    </ion-item>
+
+
+    
+
+   <ion-slides  pager="true" [options]="slideOpts">
+       <ion-slide *ngFor="let hero of heroes; index as i" class="hero" (click)="animate(i)">
+            <ion-card color="light">
+                <ion-card-header>
+                    <ion-card-title>{{hero.name | uppercase}}</ion-card-title>
+                    <ion-card-subtitle>Id: {{hero.id}}</ion-card-subtitle>
+                </ion-card-header>
+        
+                <ion-card-content>
+                    <p>Power up: {{ 0.25 | percent}}</p>
+                    <p>{{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt molestias sit laborum quidem consequuntur corrupti perspiciatis odio expedita soluta, suscipit quaerat dignissimos, consectetur optio nisi blanditiis? Labore, necessitatibus suscipit?' | slice:0:40 | uppercase}}...</p>
+                    <p>Power: {{2 | powerUp:factor}}</p>
+        
+                </ion-card-content>
+        
+        
+                <ion-buttons>
+                    <ion-button (click)="editHero(hero.name, hero.id)" color="success" fill="solid">
+                        <ion-icon slot="start" name="brush"></ion-icon>
+                        Editar
+                    </ion-button>
+        
+                    <ion-button color="danger" fill="outline" (click)="deleteHero(i)">
+                        <ion-icon slot="start" name="trash"></ion-icon>
+                        Borrar
+                    </ion-button>
+                </ion-buttons>
+            </ion-card>    
+       </ion-slide>
+   </ion-slides>
+
+</ion-content>

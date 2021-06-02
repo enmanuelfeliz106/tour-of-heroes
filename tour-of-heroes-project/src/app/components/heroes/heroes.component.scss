@@ -1,0 +1,28 @@
+
+
+ion-buttons{
+    ion-button{
+        width: 45%;
+        text-align: center;
+        margin: 0 auto;
+        --border-radius: .25rem;
+    }
+
+    margin: .5rem auto;
+}
+
+ion-slides{
+
+    --bullet-background-active: #2fdf75;
+    
+}
+
+.hero{
+    transform: scale(1);
+    transition: transform .2s;
+    margin: 1rem auto;
+}
+
+.hero:active{
+    transform: scale(1.1);
+}
