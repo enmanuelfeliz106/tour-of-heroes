@@ -1,0 +1,13 @@
+<div class="hero-details" *ngIf="selectedHero">
+  <h1>{{selectedHero.name}}</h1>
+  <h2>{{selectedHero.id}}</h2>
+  <p *ngIf="selectedHero.description; else emptyDescription">{{selectedHero.description}}</p>
+
+  <ng-template #emptyDescription>
+    <p>There's no description for this hero</p>
+  </ng-template>
+
+  <ion-button (click)="message.emit('Hello from child component')" expand="block" fill="clear" shape="round">
+    Get Message
+  </ion-button>
+</div>

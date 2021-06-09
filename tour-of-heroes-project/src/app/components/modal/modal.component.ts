@@ -8,8 +8,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalComponent implements OnInit {
 
-  @Input() heroName: string;
-  @Input() heroId: number;
+  @Input() hero;
 
   constructor(private modalCtrl: ModalController) { }
 
@@ -17,14 +16,13 @@ export class ModalComponent implements OnInit {
 
   closeModal(){
     this.modalCtrl.dismiss({
-      name: this.heroName,
-      id: this.heroId
+      hero: this.hero
 
     });
   }
 
   clearInput(){
-    this.heroName = '';
+    this.hero.name = '';
   }
 
 }

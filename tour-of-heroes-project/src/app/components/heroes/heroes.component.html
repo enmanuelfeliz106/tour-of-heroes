@@ -1,7 +1,7 @@
 
 
 
-<ion-content>
+<ion-content class="heroes-component" class="ion-justify-content-center">
     <ion-header>
         <ion-toolbar>
             <ion-buttons slot="start">
@@ -19,35 +19,49 @@
 
     
 
-   <ion-slides  pager="true" [options]="slideOpts">
-       <ion-slide *ngFor="let hero of heroes; index as i" class="hero" (click)="animate(i)">
-            <ion-card color="light">
-                <ion-card-header>
-                    <ion-card-title>{{hero.name | uppercase}}</ion-card-title>
-                    <ion-card-subtitle>Id: {{hero.id}}</ion-card-subtitle>
-                </ion-card-header>
-        
-                <ion-card-content>
-                    <p>Power up: {{ 0.25 | percent}}</p>
-                    <p>{{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt molestias sit laborum quidem consequuntur corrupti perspiciatis odio expedita soluta, suscipit quaerat dignissimos, consectetur optio nisi blanditiis? Labore, necessitatibus suscipit?' | slice:0:40 | uppercase}}...</p>
-                    <p>Power: {{2 | powerUp:factor}}</p>
-        
-                </ion-card-content>
-        
-        
-                <ion-buttons>
-                    <ion-button (click)="editHero(hero.name, hero.id)" color="success" fill="solid">
-                        <ion-icon slot="start" name="brush"></ion-icon>
-                        Editar
-                    </ion-button>
-        
-                    <ion-button color="danger" fill="outline" (click)="deleteHero(i)">
-                        <ion-icon slot="start" name="trash"></ion-icon>
-                        Borrar
-                    </ion-button>
-                </ion-buttons>
-            </ion-card>    
+   <ion-slides>
+       <ion-slide *ngFor="let hero of heroesFromMarvel; index as i" class="hero">
+       
+                <ion-card [class.selected]="hero === selectedHero" class="hero-card" (click)="selectHero(hero)" >
+                    <ion-card-header>
+                        <ion-img src="{{hero.thumbnail.path + '/standard_fantastic.' + hero.thumbnail.extension}}"></ion-img>
+                        <ion-card-title>{{hero.name | uppercase}}</ion-card-title>
+                        <ion-card-subtitle>Id: {{hero.id}}</ion-card-subtitle>
+                    </ion-card-header>
+            
+                    <ion-card-content>
+                        <p>Power up: {{ 0.25 | percent}}</p>
+                        <p *ngIf="hero.description; else empty">Description: {{hero.description + '' | slice:0:40 | uppercase}}...</p>
+                        <p>Power: {{2 | powerUp:factor}}</p>
+
+                        <ng-template #empty>
+                            <p>There is no description for this hero of Marvel..........................................</p>
+                        </ng-template>
+            
+                    </ion-card-content>
+            
+            
+                    <ion-buttons>
+                        <ion-button (click)="editHero(hero)" color="success" fill="solid">
+                            <ion-icon slot="start" name="brush"></ion-icon>
+                            Editar
+                        </ion-button>
+            
+                        <ion-button color="danger" fill="outline" (click)="deleteHero(i)">
+                            <ion-icon slot="start" name="trash"></ion-icon>
+                            Borrar
+                        </ion-button>
+                    </ion-buttons>
+                </ion-card>   
+
        </ion-slide>
    </ion-slides>
+
+   <ion-button (click)="heroDetailsComponent.doSomething()" color="warning" expand="block" fill="solid" shape="round">
+       {{heroDetailsComponent.buttonTitle}}
+   </ion-button>
+
+   <app-hero-details [selectedHero]="selectedHero" (message)="showMessage($event)" #heroDetailsComponent></app-hero-details>
+   
 
 </ion-content>

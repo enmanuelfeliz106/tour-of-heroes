@@ -10,9 +10,10 @@ import {HeroesComponent} from './components/heroes/heroes.component';
 import { PowerUpPipe } from './pipes/power-up.pipe';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
+import { HeroDetailsComponent } from './components/hero-details/hero-details.component';
 
 @NgModule({
-  declarations: [AppComponent, HeroesComponent, PowerUpPipe, ModalComponent],
+  declarations: [AppComponent, HeroesComponent, PowerUpPipe, ModalComponent, HeroDetailsComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
